@@ -29,6 +29,9 @@ movieRouter.post("/create",authorization(["admin"]),async(req,res)=>{
                 bookedPlatiniumSeats:[],
                 bookedGoldSeats:[],
                 bookedSilverSeats:[],
+                remainingPlatiniumTickets:data.totalPlatiniumTickets,
+                remainingGoldTickets:data.totalGoldTickets,
+                remainingSilverTickets:data.totalSilverTickets,
                 openForSale:true,
                 closingDate:data.closingDate,
                 createdDate:createdDate

@@ -5,12 +5,14 @@ require('dotenv').config()
 const {connection}=require("./config/db")
 const {userRouter}=require("./routes/user.route")
 const {movieRouter}=require("./routes/movies.route")
+const {ticketRouter}=require("./routes/tickets.route")
 
 const app=express()
 app.use(express.json())
 app.use(cors())
 app.use("/users",userRouter)
 app.use("/movies",movieRouter)
+app.use("/tickets",ticketRouter)
 
 app.get("/home",(req,res)=>{
     res.status(200).send({"Message":"Hello, Welcome to ticket booking system."})
