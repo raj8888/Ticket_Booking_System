@@ -200,9 +200,9 @@ ticketRouter.get("/filter/movies/descending",async(req,res)=>{
 })
 
 
-ticketRouter.get("/search/movies",async(req,res)=>{
+ticketRouter.post("/search/movies",async(req,res)=>{
     try {
-        let searchQuery=req.body.movieName
+        let searchQuery=req.body.searchQuery
        let data= await movieModel.find({ movieName: { $regex: new RegExp(searchQuery, 'i') } })
        res.status(201).send({"message":"searched movie data",data:data})
     } catch (error) {
