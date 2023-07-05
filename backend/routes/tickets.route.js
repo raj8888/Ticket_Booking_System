@@ -215,7 +215,14 @@ ticketRouter.get("/cart/all/items",async(req,res)=>{
     try {
         let userID=req.body.userID
         let data=await cartModel.find({userID:userID})
-        res.status(201).send({"message":"Elements present in cart",data:data})
+        let mainData=[]
+        for(let i=0;i<data.length;i++){
+            let movieData=await movieModel.findById(data[i].movieID)
+            let obj={...data[i]}
+            obj._doc.movieName=movieData.movieName
+            mainData.push(obj._doc)
+        }
+        res.status(201).send({"message":"Elements present in cart",data:mainData})
     } catch (error) {
         console.log(error.message)
         res.status(400).send({"message":"Sorry :( , Server Error"})
