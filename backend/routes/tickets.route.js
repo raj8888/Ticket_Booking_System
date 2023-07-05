@@ -2,6 +2,7 @@ const express=require("express")
 const {movieModel}=require("../models/movies.model")
 const {ticketModel}=require("../models/ticket.model")
 const {userModel}=require("../models/user.model")
+const {cartModel}=require("../models/cart.model")
 const ticketRouter=express.Router()
 const {authorization}=require("../middlewares/authorization.middleware")
 const {authenticator}=require("../middlewares/authenticator.middleware")
@@ -138,9 +139,72 @@ ticketRouter.post("/book/movie/:movieID",async(req,res)=>{
                 createdDate:createdDate
             })
             await newTicket.save()
-            res.status(200).send({"message":"checking process"})
+            res.status(200).send({"message":"Tickets booked successfully."})
         }
         
+    } catch (error) {
+        console.log(error.message)
+        res.status(400).send({"message":"Sorry :( , Server Error"})
+    }
+})
+
+ticketRouter.post("/cart/add/:movieID",async(req,res)=>{
+    try {
+        let data=req.body
+        let userID=req.body.userID
+        let movieID=req.params.movieID
+        let newCart=new cartModel({
+            userID: userID,
+            movieID:movieID,
+            platiniumTickets:data.platiniumTickets,
+            goldTickets:data.goldTickets,
+            silverTickets:data.silverTickets
+        })
+        await newCart.save()
+        res.status(200).send({"message":"Ticket added to the cart."})
+    } catch (error) {
+        console.log(error.message)
+        res.status(400).send({"message":"Sorry :( , Server Error"})
+    }
+})
+
+ticketRouter.delete("/cart/remove/item/:movieID",async(req,res)=>{
+    try {
+        let movieID=req.params.movieID
+        await cartModel.deleteOne({movieID:movieID})
+        res.status(200).send({"message":"Tickets remove from the cart"})
+    } catch (error) {
+        console.log(error.message)
+        res.status(400).send({"message":"Sorry :( , Server Error"})
+    }
+})
+
+ticketRouter.get("/filter/movies/ascending",async(req,res)=>{
+    try {
+       let data= await movieModel.find({}).sort({movieName:1})
+       res.status(201).send({"message":"data is filetered in ascending order",data:data})
+    } catch (error) {
+        console.log(error.message)
+        res.status(400).send({"message":"Sorry :( , Server Error"})
+    }
+})
+
+ticketRouter.get("/filter/movies/descending",async(req,res)=>{
+    try {
+       let data= await movieModel.find({}).sort({movieName:-1})
+       res.status(201).send({"message":"data is filetered in descending order",data:data})
+    } catch (error) {
+        console.log(error.message)
+        res.status(400).send({"message":"Sorry :( , Server Error"})
+    }
+})
+
+
+ticketRouter.get("/search/movies",async(req,res)=>{
+    try {
+        let searchQuery=req.body.movieName
+       let data= await movieModel.find({ movieName: { $regex: new RegExp(searchQuery, 'i') } })
+       res.status(201).send({"message":"searched movie data",data:data})
     } catch (error) {
         console.log(error.message)
         res.status(400).send({"message":"Sorry :( , Server Error"})

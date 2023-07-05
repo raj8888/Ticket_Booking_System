@@ -21,7 +21,7 @@ movieRouter.post("/create",authorization(["admin"]),async(req,res)=>{
             let data=req.body
             let createdDate=new Date().toLocaleDateString()
             let newMovie=new movieModel({
-                movieName:data.name,
+                movieName:data.movieName,
                 totalTickets:data.totalTickets,
                 totalPlatiniumTickets:data.totalPlatiniumTickets,
                 totalGoldTickets:data.totalGoldTickets,
