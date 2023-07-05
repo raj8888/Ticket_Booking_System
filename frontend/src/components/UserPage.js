@@ -14,6 +14,8 @@ const UserPage = ({ handleLogout }) => {
     const [selectedSeatsSilver, setSelectedSeatsSilver] = useState([]);
     const [cartItems, setCartItems] = useState([]);
     const [currentPage, setCurrentPage] = useState('home');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filterOrder, setFilterOrder] = useState('ascending');
 
     const handleLogoutClick = () => {
         localStorage.removeItem('TicketBookingToken');
@@ -183,11 +185,14 @@ const UserPage = ({ handleLogout }) => {
     const handleCartClick = async () => {
         setCurrentPage('cart');
         fetchCartItems();
+        setSearchQuery('');
     };
 
     const handleHomeClick = () => {
         setCurrentPage('home');
         setSelectedMovie(null);
+        setSearchQuery('');
+        fetchMovies()
       };
 
     const fetchCartItems = async () => {
@@ -260,6 +265,57 @@ const UserPage = ({ handleLogout }) => {
         }
       };
 
+      const handleSearch = async () => {
+        try {
+            let config = {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('TicketBookingToken')}`,
+                }
+            };
+          const response = await axios.post('http://localhost:8080/tickets/search/movies', { searchQuery },config);
+          if (response.status === 201) {
+            // Update the movies state with the search results
+            setMovies(response.data.data);
+          } else {
+            console.log(response.data);
+          }
+        } catch (error) {
+          console.error('Error searching movies:', error.message);
+        }
+      };
+
+      const handleFilterChange = (e) => {
+        setFilterOrder(e.target.value);
+      };
+    
+      const handleFilter = async () => {
+        let filterURL = 'http://localhost:8080/tickets/filter/movies/';
+    
+        if (filterOrder === 'ascending') {
+          filterURL += 'ascending';
+        } else if (filterOrder === 'descending') {
+          filterURL += 'descending';
+        }
+    
+        try {
+            let config = {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('TicketBookingToken')}`,
+                }
+            };
+          const response = await axios.get(filterURL, config);
+          if (response.status === 201) {
+            // Update the movies state with the search results
+            setMovies(response.data.data);
+          } else {
+            console.log(response.data);
+          }
+        } catch (error) {
+          console.error('Error searching movies:', error.message);
+        }
+      };
+    
+
     return (
         <div>
             <nav className="navbar">
@@ -274,8 +330,27 @@ const UserPage = ({ handleLogout }) => {
                 </div>
             </nav>
             <h2 className="user-head">User Page</h2>
+            
             {currentPage === "home" && (
                 <div>
+                    <div className="search-bar">
+                        <input
+                        type="text"
+                        placeholder="Search movies"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="search-input"
+                        />
+                        <button onClick={handleSearch} className="search-button">Search</button>
+                    </div>
+                    <div className="filter-select">
+                        <label htmlFor="filter">Filter:</label>
+                        <select id="filter" value={filterOrder} onChange={handleFilterChange} className="select-field">
+                        <option value="ascending">Ascending</option>
+                        <option value="descending">Descending</option>
+                        </select>
+                        <button onClick={handleFilter} className="filter-button">Apply</button>
+                    </div>
                     {selectedMovie ? (
                         <div className="movie-details">
                             <h2>{selectedMovie.movieName}</h2>
