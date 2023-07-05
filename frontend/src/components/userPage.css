@@ -1,0 +1,194 @@
+/* adminPage.css */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f1f1f1;
+    padding: 10px;
+  }
+  
+  .logo {
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 20px;
+  }
+  
+  .navbar-options {
+    display: flex;
+    gap: 10px;
+    margin-right: 20px;
+  }
+  
+  .movie-list {
+    margin: 20px;
+  }
+  
+  .movie-list h2 {
+    font-size: 24px;
+  }
+  
+  .movie-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .movie-list li {
+    margin-bottom: 10px;
+  }
+  
+  .movie-cards {
+    display: flex;
+    gap: 20px;
+    width: 95%;
+    margin: auto;
+  }
+  
+  .movie-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .movie-card h3 {
+    margin-top: 0;
+  }
+  
+  .movie-card button {
+    margin-top: 10px;
+  }
+
+  .user-head{
+    width: 95%;
+    margin: auto;
+    background-color: grey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .createmovie-head{
+    width: 95%;
+    margin: auto;
+    background-color: rgb(200, 200, 200);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  /* userPage.css */
+
+/* Navbar */
+
+/* Single Movie */
+.single-movie {
+  padding: 20px;
+}
+
+.single-movie h3 {
+  margin-top: 0;
+}
+
+.seat-layout {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.seat-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.seat {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.seat.booked {
+  background-color: red;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.actions button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+/* Seat Layout */
+.seat-layout {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.seat-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.seat {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.platinum-seat {
+  background-color: #fff;
+}
+
+.platinum-seat.booked {
+  background-color: red;
+}
+
+.gold-seat {
+  background-color: #fff;
+}
+
+.gold-seat.booked {
+  background-color: yellow;
+}
+
+.silver-seat {
+  background-color: #fff;
+}
+
+.silver-seat.booked {
+  background-color: grey;
+}
+
+
+/* Additional CSS for selected seats */
+
+.seat.selected-platinum {
+  background-color: coral;
+}
+.seat.selected-gold {
+  background-color: rgb(249, 249, 159);
+}
+.seat.selected-silver {
+  background-color: rgb(214, 213, 213);
+}
