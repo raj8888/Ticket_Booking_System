@@ -67,10 +67,10 @@ userRouter.post("/login",async(req,res)=>{
                 }else if(result){
                     if(findData[0].role=='user'){
                         var token = jwt.sign({ userID: findData[0]._id, userRole:findData[0].role, userName:findData[0].name,userEmail:findData[0].email }, process.env.seckey);
-                        res.status(201).send({'message':"User Login Successfully!",'TicketBookingToken':token,userEmail:findData[0].email})
+                        res.status(201).send({'message':"User Login Successfully!",'TicketBookingToken':token,userRole:findData[0].role})
                     }else{
                         var token = jwt.sign({ userID: findData[0]._id, userRole:findData[0].role, userName:findData[0].name,userEmail:findData[0].email }, process.env.seckey);
-                        res.status(201).send({'message':"Admin Login Successfully!",'TicketBookingToken':token,userEmail:findData[0].email})
+                        res.status(201).send({'message':"Admin Login Successfully!",'TicketBookingToken':token,userRole:findData[0].role})
                     }
                     
                 }else{

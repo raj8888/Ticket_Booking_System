@@ -18,15 +18,15 @@ ticketRouter.post("/book/movie/:movieID",async(req,res)=>{
         let totalGoldTics=req.body.totalGoldTickets
         let totalSilverTics=req.body.totalSilverTickets
         let pltCount=0
-        if(totalPlatinumTics!=undefined){
+        if(totalPlatinumTics.length!=0){
             pltCount=totalPlatinumTics.length
         }
         let gldCount=0
-        if(totalGoldTics!=undefined){
+        if(totalGoldTics.length!=0){
             gldCount=totalGoldTics.length
         }
         let slvrCount=0
-        if(totalSilverTics!=undefined){
+        if(totalSilverTics.length!=0){
             slvrCount=totalSilverTics.length
         }
         let movieData=await movieModel.findById(movieID)
@@ -87,7 +87,7 @@ ticketRouter.post("/book/movie/:movieID",async(req,res)=>{
             if(checkSlvrRemain>=0){
                 flagSlvr=true
             }
-            if(flagPlat){
+            if(flagSlvr){
                 let bookedSilverSeats=movieData.bookedSilverSeats
                 let presentOrNot=false
                 for(let i=0;i<totalSilverTics.length;i++){
@@ -124,7 +124,7 @@ ticketRouter.post("/book/movie/:movieID",async(req,res)=>{
                 let newGldRemainingSeats=remainingGldTics-totalGoldTics.length
                 await movieModel.findByIdAndUpdate(movieID,{bookedGoldSeats:newGldArray,remainingGoldTickets:newGldRemainingSeats})
             }
-            if(flagSlvr && slvrCount==false){
+            if(flagSlvr && slvrPresent==false){
                 let newSlvrArray=[...movieData.bookedSilverSeats,...totalSilverTics]
                 let newSlvrRemainingSeats=remainingSlvrTics-totalSilverTics.length
                 await movieModel.findByIdAndUpdate(movieID,{bookedSilverSeats:newSlvrArray,remainingSilverTickets:newSlvrRemainingSeats})

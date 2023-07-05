@@ -1,6 +1,7 @@
 const authorization = (perRoles) => {
     return (req, res, next) => {
       let isAllowed = false;
+      console.log(perRoles)
       perRoles.map(role => {
         if (req.body.userRole.includes(role)) {
           isAllowed = true;
