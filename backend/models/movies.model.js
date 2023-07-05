@@ -9,6 +9,7 @@ const moviesSchema=mongoose.Schema({
     bookedPlatiniumSeats:{type: [String]},
     bookedGoldSeats:{type: [String]},
     bookedSilverSeats:{type: [String]},
+    openForSale:Boolean,
     closingDate:String,
     createdDate:String
 })

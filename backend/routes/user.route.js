@@ -65,8 +65,14 @@ userRouter.post("/login",async(req,res)=>{
                 if(err){
                     res.status(400).send({"message":"Please Fill Correct Information."})
                 }else if(result){
-                    var token = jwt.sign({ userID: findData[0]._id, userRole:findData[0].role, userName:findData[0].name,userEmail:findData[0].email }, process.env.seckey);
-                    res.status(201).send({'message':"User Login Successfully!",'TicketBookingToken':token,userEmail:findData[0].email})
+                    if(findData[0].role=='user'){
+                        var token = jwt.sign({ userID: findData[0]._id, userRole:findData[0].role, userName:findData[0].name,userEmail:findData[0].email }, process.env.seckey);
+                        res.status(201).send({'message':"User Login Successfully!",'TicketBookingToken':token,userEmail:findData[0].email})
+                    }else{
+                        var token = jwt.sign({ userID: findData[0]._id, userRole:findData[0].role, userName:findData[0].name,userEmail:findData[0].email }, process.env.seckey);
+                        res.status(201).send({'message':"Admin Login Successfully!",'TicketBookingToken':token,userEmail:findData[0].email})
+                    }
+                    
                 }else{
                     res.status(400).send({"message":"Please Fill Correct Information."})
                 }
