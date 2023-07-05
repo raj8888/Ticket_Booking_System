@@ -211,6 +211,19 @@ ticketRouter.get("/search/movies",async(req,res)=>{
     }
 })
 
+ticketRouter.get("/cart/all/items",async(req,res)=>{
+    try {
+        let userID=req.body.userID
+        let data=await cartModel.find({userID:userID})
+        res.status(201).send({"message":"Elements present in cart",data:data})
+    } catch (error) {
+        console.log(error.message)
+        res.status(400).send({"message":"Sorry :( , Server Error"})
+    }
+})
+
+
+
 module.exports={
     ticketRouter
 }
