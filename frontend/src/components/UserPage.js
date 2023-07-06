@@ -3,6 +3,7 @@ import './userPage.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import mainAPI from './DeployedLink';
+import PaymentForm from './PaymentForm';
 
 
 const UserPage = ({ handleLogout }) => {
@@ -16,6 +17,12 @@ const UserPage = ({ handleLogout }) => {
     const [currentPage, setCurrentPage] = useState('home');
     const [searchQuery, setSearchQuery] = useState('');
     const [filterOrder, setFilterOrder] = useState('ascending');
+    const [cardNumber, setCardNumber] = useState('');
+    const [cardName, setCardName] = useState('');
+    const [cvv, setCvv] = useState('');
+  
+    // State to track the payment amount
+    const [paymentAmount, setPaymentAmount] = useState(0);
 
     // If user click on logout, he will redirect to login page
     const handleLogoutClick = () => {
@@ -86,7 +93,7 @@ const UserPage = ({ handleLogout }) => {
             goldTickets: selectedSeatsGold,
             silverTickets: selectedSeatsSilver,
         };
-
+            console.log(cartData)
         // Make POST request to add seats to cart
         let config = {
             headers: {
@@ -159,33 +166,18 @@ const UserPage = ({ handleLogout }) => {
             alert('Please select at least one seat.');
             return;
         }
-
-        const bookingData = {
-            totalPlatiniumTickets: selectedSeatsPlatinum,
-            totalGoldTickets: selectedSeatsGold,
-            totalSilverTickets: selectedSeatsSilver,
-        };
-        // Make POST request to book seats
-        let config = {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('TicketBookingToken')}`,
-            }
-        };
-        const movieId = selectedMovie._id;
-        const url = `${mainAPI}/tickets/book/movie/${movieId}`;
-        axios.post(url, bookingData, config)
-            .then((response) => {
-                setSelectedSeatsPlatinum([]);
-                setSelectedSeatsGold([]);
-                setSelectedSeatsSilver([]);
-                alert(response.data.message);
-                handleBookTickets(movieId)
-            })
-
-            .catch((error) => {
-                alert("Server Error")
-                console.error('Error booking seats:', error.message);
-            });
+        // Calculate the total price based on selected seats
+        const platinumTicketPrice = 1000;
+        const goldTicketPrice = 600;
+        const silverTicketPrice = 400;
+        const totalPrice =
+          selectedSeatsPlatinum.length * platinumTicketPrice +
+          selectedSeatsGold.length * goldTicketPrice +
+          selectedSeatsSilver.length * silverTicketPrice;
+    
+        setPaymentAmount(totalPrice);
+    
+        setCurrentPage('payment');
     };
 
     const handleCartClick = async () => {
@@ -325,6 +317,74 @@ const UserPage = ({ handleLogout }) => {
             console.error('Error searching movies:', error.message);
         }
     };
+
+
+    const handlePaymentSubmit = async (e) => {
+        e.preventDefault();
+      
+        // Perform payment validation and processing here
+      
+        // Validate card number, card name, CVV, and payment field
+        if (!cardNumber || !cardName || !cvv ) {
+          alert('Please fill in all payment details');
+          return;
+        }
+      
+        // Perform additional payment validation and processing as needed
+        // ...
+      
+        // Check if the payment amount matches the total price
+        const platinumTicketPrice = 1000;
+        const goldTicketPrice = 600;
+        const silverTicketPrice = 400;
+        const totalPlatinumPrice = selectedSeatsPlatinum.length * platinumTicketPrice;
+        const totalGoldPrice = selectedSeatsGold.length * goldTicketPrice;
+        const totalSilverPrice = selectedSeatsSilver.length * silverTicketPrice;
+        const totalPrice = totalPlatinumPrice + totalGoldPrice + totalSilverPrice 
+        console.log(paymentAmount,totalPrice)
+        if (paymentAmount !== totalPrice) {
+          alert('Invalid payment amount');
+          return;
+        }
+      
+        // Make the request to book the seats
+        try {
+          const bookingData = {
+            totalPlatiniumTickets: selectedSeatsPlatinum,
+            totalGoldTickets: selectedSeatsGold,
+            totalSilverTickets: selectedSeatsSilver,
+          };
+      
+          const config = {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('TicketBookingToken')}`,
+            },
+          };
+      
+          const movieId = selectedMovie._id;
+          const url = `${mainAPI}/tickets/book/movie/${movieId}`;
+      
+          const response = await axios.post(url, bookingData, config);
+          if (response.status === 200) {
+            setSelectedSeatsPlatinum([]);
+            setSelectedSeatsGold([]);
+            setSelectedSeatsSilver([]);
+            setCardName("")
+            setCardNumber("")
+            setCvv("")
+            setPaymentAmount(0)
+            alert(response.data.message);
+            handleBookTickets(movieId);
+          } else {
+            alert(response.data.message);
+          }
+        } catch (error) {
+          alert('Server Error');
+          console.error('Error booking seats:', error.message);
+        }
+      
+        setCurrentPage('home'); // Redirect to the home page after booking seats
+      };
 
 
     return (
@@ -514,6 +574,19 @@ const UserPage = ({ handleLogout }) => {
                     )}
                 </div>
             )}
+            {currentPage === 'payment' && (
+        <PaymentForm
+          paymentAmount={paymentAmount}
+          setPaymentAmount={setPaymentAmount}
+          cardNumber={cardNumber}
+          setCardNumber={setCardNumber}
+          cardName={cardName}
+          setCardName={setCardName}
+          cvv={cvv}
+          setCvv={setCvv}
+          handleSubmit={handlePaymentSubmit}
+        />
+      )}
         </div>
     );
 };
