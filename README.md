@@ -296,6 +296,9 @@ Cart Section:
 https://strange-ruby-pajamas.cyclic.app](
 https://strange-ruby-pajamas.cyclic.app)
 
+## Postman File Link:
+[https://api.postman.com/collections/24256660-239a6860-5254-416e-90c8-2b7dd5eabe27?access_key=PMAT-01H4N92HK1GZ4BG37ZCSTZFD63](https://api.postman.com/collections/24256660-239a6860-5254-416e-90c8-2b7dd5eabe27?access_key=PMAT-01H4N92HK1GZ4BG37ZCSTZFD63)
+
 ## Author
 
 - [@raj8888](https://github.com/raj8888)

@@ -1,0 +1,794 @@
+{
+	"info": {
+		"_postman_id": "239a6860-5254-416e-90c8-2b7dd5eabe27",
+		"name": "TIcket Booking System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24256660"
+	},
+	"item": [
+		{
+			"name": "checking apit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/home",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"home"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"postman\",\r\n    \"email\": \"postmant@gmail.com\",\r\n    \"mobile\": \"6565465456\",\r\n    \"password\":\"postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/users/register",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"postmant@gmail.com\",\r\n    \"password\":\"postman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/users/login",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"jadhavrj8877@gmail.com\",\r\n    \"password\":\"Raj@8080680\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/users/login",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Movie (for admin)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NGE0MDY5MDFlOTJmZDhhNmE5NWM1YjAiLCJ1c2VyUm9sZSI6ImFkbWluIiwidXNlck5hbWUiOiJSYWoiLCJ1c2VyRW1haWwiOiJqYWRoYXZyajg4NzdAZ21haWwuY29tIiwiaWF0IjoxNjg4NjM0OTM5fQ.qbQs0XeyeBN4p0mPDu0YJxdmltC_U4n8XZg6IBqzOOg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"movieName\": \"IronMan\",\r\n    \"totalTickets\": 50,\r\n    \"totalPlatiniumTickets\": 10,\r\n    \"totalGoldTickets\": 20,\r\n    \"totalSilverTickets\": 20,\r\n    \"closingDate\": \"2023-08-23\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/movies/create",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"movies",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Movies",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NGE0MDY5MDFlOTJmZDhhNmE5NWM1YjAiLCJ1c2VyUm9sZSI6ImFkbWluIiwidXNlck5hbWUiOiJSYWoiLCJ1c2VyRW1haWwiOiJqYWRoYXZyajg4NzdAZ21haWwuY29tIiwiaWF0IjoxNjg4NjM0OTM5fQ.qbQs0XeyeBN4p0mPDu0YJxdmltC_U4n8XZg6IBqzOOg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/movies/all",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"movies",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Single Movie",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "secret",
+							"value": "ticketbookingsystem",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/movies/single/64a686db09894979e6b64fc4",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"movies",
+						"single",
+						"64a686db09894979e6b64fc4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Status",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "secret",
+							"value": "ticketbookingsystem",
+							"type": "string"
+						},
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/movies/update/status/64a65a435bd57d624250866d",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"movies",
+						"update",
+						"status",
+						"64a65a435bd57d624250866d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book Tickets",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "secret",
+							"value": "ticketbookingsystem",
+							"type": "string"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"totalPlatiniumTickets\":[\"p1\",\"p2\"],\r\n    \"totalGoldTickets\":[],\r\n    \"totalSilverTickets\":[]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/tickets/book/movie/64a686db09894979e6b64fc4",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"tickets",
+						"book",
+						"movie",
+						"64a686db09894979e6b64fc4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tickets Add To Cart",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2NGE2ODUyZTA5ODk0OTc5ZTZiNjRmYmYiLCJ1c2VyUm9sZSI6InVzZXIiLCJ1c2VyTmFtZSI6InBvc3RtYW4iLCJ1c2VyRW1haWwiOiJwb3N0bWFudEBnbWFpbC5jb20iLCJpYXQiOjE2ODg2MzU2NDB9.dEQ0qaXg2U3Y_9dzgCXS9JZo2bw8yyXHFCBkeTwCPss",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"platiniumTickets\":[],\r\n    \"goldTickets\":[\"g1\",\"g2\"],\r\n    \"silverTickets\":[]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/tickets/cart/add/64a686db09894979e6b64fc4",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"tickets",
+						"cart",
+						"add",
+						"64a686db09894979e6b64fc4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ticket Remove From Cart",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "secret",
+							"value": "ticketbookingsystem",
+							"type": "string"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/tickets/cart/remove/item/64a686db09894979e6b64fc4",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"tickets",
+						"cart",
+						"remove",
+						"item",
+						"64a686db09894979e6b64fc4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter Movie Data In Ascending Order",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "secret",
+							"value": "ticketbookingsystem",
+							"type": "string"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/tickets/filter/movies/ascending",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"tickets",
+						"filter",
+						"movies",
+						"ascending"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FIleter Movies Data In Descending Order",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "secret",
+							"value": "ticketbookingsystem",
+							"type": "string"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/tickets/filter/movies/descending",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"tickets",
+						"filter",
+						"movies",
+						"descending"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search movies",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "secret",
+							"value": "ticketbookingsystem",
+							"type": "string"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"searchQuery\":\"ironman\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/tickets/search/movies",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"tickets",
+						"search",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Items In Cart",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "isSecretBase64Encoded",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "headerPrefix",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "secret",
+							"value": "ticketbookingsystem",
+							"type": "string"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://strange-ruby-pajamas.cyclic.app/tickets/cart/all/items",
+					"protocol": "https",
+					"host": [
+						"strange-ruby-pajamas",
+						"cyclic",
+						"app"
+					],
+					"path": [
+						"tickets",
+						"cart",
+						"all",
+						"items"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
