@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import mainAPI from './DeployedLink';
+import './CreateMovieForm.css'
 
 const CreateMovieForm = () => {
   const [movieData, setMovieData] = useState({
@@ -52,8 +53,8 @@ const CreateMovieForm = () => {
   };
 
   return (
-    <div>
-      <h3 className="createmovie-head">Create Movie</h3>
+    <div className="create-movie-form">
+      <h3 className="createmovie-head">Create Movie Form</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="movieName">Movie Name:</label>
         <input type="text" id="movieName" name="movieName" value={movieData.movieName} onChange={handleChange} />

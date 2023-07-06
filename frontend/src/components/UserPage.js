@@ -355,19 +355,22 @@ const UserPage = ({ handleLogout }) => {
                         <button onClick={handleSearch} className="search-button">Search</button>
                     </div>
                     <div className="filter-select">
-                        <label htmlFor="filter">Filter:</label>
                         <select id="filter" value={filterOrder} onChange={handleFilterChange} className="select-field">
-                            <option value="ascending">Ascending</option>
-                            <option value="descending">Descending</option>
+                            <option value="ascending" className="select-field-option">Ascending</option>
+                            <option value="descending" className="select-field-option">Descending</option>
                         </select>
                         <button onClick={handleFilter} className="filter-button">Apply</button>
                     </div>
                     {selectedMovie ? (
                         <div className="movie-details">
-                            <h2>{selectedMovie.movieName}</h2>
+                            <h2 className="movie-name">{selectedMovie.movieName}</h2>
+                                    <div className="section-name">
+                                    <h3 className='plt-head'>Platinum Seats</h3>
+                                    <h3 className='gld-head'>Gold Seats</h3>
+                                    <h3 className='slvr-head'>Silver Seats</h3>
+                                    </div>
                             <div className="seat-layout">
                                 <div className="seat-section">
-                                    <h3>Platinum Seats</h3>
                                     {Array.from({ length: selectedMovie.totalPlatiniumTickets }, (_, index) => {
                                         const seatId = `p${index + 1}`;
                                         const isBooked = selectedMovie.bookedPlatiniumSeats.includes(seatId);
@@ -396,8 +399,8 @@ const UserPage = ({ handleLogout }) => {
                                         }
                                     })}
                                 </div>
+                                    {/* <h3>Gold Seats</h3> */}
                                 <div className="seat-section">
-                                    <h3>Gold Seats</h3>
                                     {Array.from({ length: selectedMovie.totalGoldTickets }, (_, index) => {
                                         const seatId = `g${index + 1}`;
                                         const isBooked = selectedMovie.bookedGoldSeats.includes(seatId);
@@ -426,8 +429,8 @@ const UserPage = ({ handleLogout }) => {
                                         }
                                     })}
                                 </div>
+                                    {/* <h3>Silver Seats</h3> */}
                                 <div className="seat-section">
-                                    <h3>Silver Seats</h3>
                                     {Array.from({ length: selectedMovie.totalSilverTickets }, (_, index) => {
                                         const seatId = `s${index + 1}`;
                                         const isBooked = selectedMovie.bookedSilverSeats.includes(seatId);
@@ -457,8 +460,8 @@ const UserPage = ({ handleLogout }) => {
                                     })}
                                 </div>
                             </div>
-                            <button onClick={handleAddToCart}>Add to Cart</button>
-                            <button onClick={handleBookSeats}>Book Seats</button>
+                            <button onClick={handleAddToCart} className='add-to-cart-button'>Add to Cart</button>
+                            <button onClick={handleBookSeats} className='book-button'>Book Seats</button>
                         </div>
                     ) : (
                         <div className="movie-cards">
@@ -504,8 +507,8 @@ const UserPage = ({ handleLogout }) => {
                                     Silver Tickets:{' '}
                                     {item.silverTickets.length === 0 ? 'Ticket Not Selected' : item.silverTickets.join(', ')}
                                 </p>
-                                <button onClick={() => handleConfirmBooking(item.movieID, item.platiniumTickets, item.goldTickets, item.silverTickets)}>Confirm Booking</button>
-                                <button onClick={() => handleRemoveFromCart(item.movieID)}>Remove from Cart</button>
+                                <button onClick={() => handleConfirmBooking(item.movieID, item.platiniumTickets, item.goldTickets, item.silverTickets)} className='confirm-booking-button'>Confirm Booking</button>
+                                <button onClick={() => handleRemoveFromCart(item.movieID)} className='remove-from-cart-button'>Remove from Cart</button>
                             </div>
                         ))
                     )}

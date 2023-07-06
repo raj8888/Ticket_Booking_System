@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import LoginForm from './LoginForm';
 import mainAPI from './DeployedLink';
+import './RegistrationForm.css'
+
 const RegistrationForm = ({ handleRegistrationSuccess, handleLogin }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -41,7 +43,8 @@ const RegistrationForm = ({ handleRegistrationSuccess, handleLogin }) => {
   }
 
   return (
-    <div>
+    <div className="registration-form">
+      <h2>Ticket Booking System</h2>
       <h2>Registration Form</h2>
       <form onSubmit={handleRegister}>
         <input
@@ -76,7 +79,7 @@ const RegistrationForm = ({ handleRegistrationSuccess, handleLogin }) => {
       </form>
       <p>
         Already registered?{' '}
-        <span onClick={handleLoginRequest} style={{ cursor: 'pointer', color: 'blue' }}>
+        <span onClick={handleLoginRequest} style={{ cursor: 'pointer', color: 'blue' }} className="login-link">
           Click here to log in
         </span>
       </p>
