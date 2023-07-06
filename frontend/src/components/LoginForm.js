@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import RegistrationForm from './RegistrationForm';
+import mainAPI from './DeployedLink';
 
 const LoginForm = ({ handleLogin }) => {
   const [email, setEmail] = useState('');
@@ -9,9 +10,8 @@ const LoginForm = ({ handleLogin }) => {
 
   const handleUserLogin = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post('http://localhost:8080/users/login', {
+      const response = await axios.post(`${mainAPI}/users/login`, {
         email,
         password,
       });
@@ -20,12 +20,12 @@ const LoginForm = ({ handleLogin }) => {
         alert(response.data.message);
         localStorage.setItem('TicketBookingToken', response.data.TicketBookingToken);
         handleLogin(response.data.userRole);
-      }else{
+      } else {
         alert(response.data.message);
       }
     } catch (error) {
-        console.log(error.message)
-        alert("Server Error");
+      console.log(error.message)
+      alert("Server Error");
     }
   };
 

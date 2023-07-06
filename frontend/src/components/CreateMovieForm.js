@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import mainAPI from './DeployedLink';
 
 const CreateMovieForm = () => {
   const [movieData, setMovieData] = useState({
@@ -29,22 +30,23 @@ const CreateMovieForm = () => {
         },
       };
 
-      let response=await axios.post('http://localhost:8080/movies/create', movieData, config);
+      let response = await axios.post(`${mainAPI}/movies/create`, movieData, config);
       // Reset the form after successful submission
-      if(response.status===201){
+      if (response.status === 201) {
         setMovieData({
-            movieName: '',
-            totalTickets: 0,
-            totalPlatiniumTickets: 0,
-            totalGoldTickets: 0,
-            totalSilverTickets: 0,
-            closingDate: '',
-          });
-          alert(response.data.message)
-      }else{
+          movieName: '',
+          totalTickets: 0,
+          totalPlatiniumTickets: 0,
+          totalGoldTickets: 0,
+          totalSilverTickets: 0,
+          closingDate: '',
+        });
+        alert(response.data.message)
+      } else {
         alert(response.data.message)
       }
     } catch (error) {
+      alert("Server Error")
       console.error('Error creating movie:', error);
     }
   };

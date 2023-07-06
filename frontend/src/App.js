@@ -13,6 +13,7 @@ const App = () => {
 
   const handleRegistrationSuccess = () => {
     setCurrentPage('login');
+    console.log('Registration successful!');
   };
 
   const handleLogin = (role) => {

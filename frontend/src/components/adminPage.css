@@ -1,78 +1,78 @@
 /* adminPage.css */
 nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #f1f1f1;
-    padding: 10px;
-  }
-  
-  .logo {
-    font-weight: bold;
-    font-size: 20px;
-    margin-left: 20px;
-  }
-  
-  .navbar-options {
-    display: flex;
-    gap: 10px;
-    margin-right: 20px;
-  }
-  
-  .movie-list {
-    margin: 20px;
-  }
-  
-  .movie-list h2 {
-    font-size: 24px;
-  }
-  
-  .movie-list ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .movie-list li {
-    margin-bottom: 10px;
-  }
-  
-  .movie-cards {
-    display: flex;
-    gap: 20px;
-    width: 95%;
-    margin: auto;
-  }
-  
-  .movie-card {
-    border: 1px solid #ccc;
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  .movie-card h3 {
-    margin-top: 0;
-  }
-  
-  .movie-card button {
-    margin-top: 10px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f1f1f1;
+  padding: 10px;
+}
 
-  .admin-head{
-    width: 95%;
-    margin: auto;
-    background-color: grey;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
-    border-radius: 5px;
-  }
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 20px;
+}
 
-  .createmovie-head{
-    width: 95%;
-    margin: auto;
-    background-color: rgb(200, 200, 200);
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
-    border-radius: 5px;
-  }
+.navbar-options {
+  display: flex;
+  gap: 10px;
+  margin-right: 20px;
+}
+
+.movie-list {
+  margin: 20px;
+}
+
+.movie-list h2 {
+  font-size: 24px;
+}
+
+.movie-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.movie-list li {
+  margin-bottom: 10px;
+}
+
+.movie-cards {
+  display: flex;
+  gap: 20px;
+  width: 95%;
+  margin: auto;
+}
+
+.movie-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.movie-card h3 {
+  margin-top: 0;
+}
+
+.movie-card button {
+  margin-top: 10px;
+}
+
+.admin-head {
+  width: 95%;
+  margin: auto;
+  background-color: grey;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.createmovie-head {
+  width: 95%;
+  margin: auto;
+  background-color: rgb(200, 200, 200);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}

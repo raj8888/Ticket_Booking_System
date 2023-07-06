@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import LoginForm from './LoginForm';
-
+import mainAPI from './DeployedLink';
 const RegistrationForm = ({ handleRegistrationSuccess, handleLogin }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -13,7 +13,7 @@ const RegistrationForm = ({ handleRegistrationSuccess, handleLogin }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/users/register', {
+      const response = await axios.post(`${mainAPI}/users/register`, {
         name,
         email,
         mobile,
@@ -23,14 +23,12 @@ const RegistrationForm = ({ handleRegistrationSuccess, handleLogin }) => {
       if (response.status === 201) {
         alert(response.data.message);
         handleRegistrationSuccess();
-      }else{
-        if (response.status === 400) {
-          alert(response.data.message);
-        }
+      } else {
+        alert(response.data.message);
       }
     } catch (error) {
-      console.log(error.message)
-      alert("Server Error")
+      console.log(error.message, error)
+      alert("Server Error");
     }
   };
 
